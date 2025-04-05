@@ -11,10 +11,10 @@
     "start:hass": "docker run --rm -p8123:8123 -v ./.hass_dev:/config homeassistant/home-assistant:beta",
     "start:hass-dev": "docker run --rm -p8123:8123 -v ./.hass_dev:/config homeassistant/home-assistant:dev"
   },
-  "author": "Paul Bottein",
+  "author": "Christian Brosius",
   "repository": {
     "type": "git",
-    "url": "https://github.com/piitaya/lovelace-mushroom"
+    "url": "https://github.com/cbrosius/lovelace-mushroom"
   },
   "license": "ISC",
   "dependencies": {

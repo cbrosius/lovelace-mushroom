@@ -43,12 +43,25 @@ const SCHEMA: HaFormSchema[] = [
     selector: { template: {} },
   },
   {
-    name: "badge_icon",
-    selector: { template: {} },
-  },
-  {
-    name: "badge_color",
-    selector: { template: {} },
+    name: "badges",
+    selector: {
+      object: {
+        icon: { selector: { template: {} } },
+        color: { selector: { template: {} } },
+        position: {
+          selector: {
+            select: {
+              options: [
+                { value: "top-right", label: "Top Right" },
+                { value: "top-left", label: "Top Left" },
+                { value: "bottom-right", label: "Bottom Right" },
+                { value: "bottom-left", label: "Bottom Left" },
+              ],
+            },
+          },
+        },
+      },
+    },
   },
   {
     name: "picture",

@@ -54,8 +54,6 @@ registerCustomCard({
 const TEMPLATE_KEYS = [
   "icon",
   "icon_color",
-  "badge_color",
-  "badge_icon",
   "primary",
   "secondary",
   "picture",
@@ -221,14 +219,12 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
 
     const icon = this.getValue("icon");
     const iconColor = this.getValue("icon_color");
-    const badgeIcon = this.getValue("badge_icon");
-    const badgeColor = this.getValue("badge_color");
     const primary = this.getValue("primary");
     const secondary = this.getValue("secondary");
     const picture = this.getValue("picture");
+    const badges = this._config.badges || [];
 
     const multiline_secondary = this._config.multiline_secondary;
-
     const rtl = computeRTL(this.hass);
 
     const appearance = computeAppearance({
@@ -246,9 +242,7 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
     const weatherSvg = getWeatherSvgIcon(icon);
 
     return html`
-      <ha-card
-        class=${classMap({ "fill-container": appearance.fill_container })}
-      >
+      <ha-card class=${classMap({ "fill-container": appearance.fill_container })}>
         <mushroom-card .appearance=${appearance} ?rtl=${rtl}>
           <mushroom-state-item
             ?rtl=${rtl}
@@ -266,9 +260,7 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
                 : icon
                   ? this.renderIcon(icon, iconColor)
                   : nothing}
-            ${(icon || picture) && badgeIcon
-              ? this.renderBadgeIcon(badgeIcon, badgeColor)
-              : undefined}
+            ${this.renderBadges(badges)}
             <mushroom-state-info
               slot="info"
               .primary=${primary}
@@ -278,6 +270,28 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
           </mushroom-state-item>
         </mushroom-card>
       </ha-card>
+    `;
+  }
+
+  private renderBadges(badges: BadgeConfig[]) {
+    return badges.map((badge) => {
+      const position = badge.position || 'top-right';
+      return this.renderBadgeIcon(badge.icon, badge.color, position);
+    });
+  }
+
+  private renderBadgeIcon(icon: string, color?: string, position: string = 'top-right') {
+    const badgeStyle = {};
+    if (color) {
+      const iconRgbColor = computeRgbColor(color);
+      badgeStyle["--main-color"] = `rgba(${iconRgbColor})`;
+    }
+    return html`
+      <mushroom-badge-icon
+        class=${position}
+        .icon=${icon}
+        style=${styleMap(badgeStyle)}
+      ></mushroom-badge-icon>
     `;
   }
 
@@ -301,21 +315,6 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
       <mushroom-shape-icon style=${styleMap(iconStyle)} slot="icon">
         <ha-state-icon .hass=${this.hass} .icon=${icon}></ha-state-icon>
       </mushroom-shape-icon>
-    `;
-  }
-
-  renderBadgeIcon(badge: string, badgeColor?: string) {
-    const badgeStyle = {};
-    if (badgeColor) {
-      const iconRgbColor = computeRgbColor(badgeColor);
-      badgeStyle["--main-color"] = `rgba(${iconRgbColor})`;
-    }
-    return html`
-      <mushroom-badge-icon
-        slot="badge"
-        .icon=${badge}
-        style=${styleMap(badgeStyle)}
-      ></mushroom-badge-icon>
     `;
   }
 
@@ -415,6 +414,7 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
       css`
         mushroom-state-item {
           cursor: pointer;
+          position: relative;
         }
         mushroom-shape-icon {
           --icon-color: rgb(var(--rgb-disabled));
@@ -424,6 +424,26 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
           width: var(--icon-size);
           height: var(--icon-size);
           display: flex;
+        }
+        mushroom-badge-icon {
+          position: absolute;
+          z-index: 1;
+        }
+        mushroom-badge-icon.top-right {
+          top: -3px;
+          right: -3px;
+        }
+        mushroom-badge-icon.top-left {
+          top: -3px;
+          left: -3px;
+        }
+        mushroom-badge-icon.bottom-right {
+          bottom: -3px;
+          right: -3px;
+        }
+        mushroom-badge-icon.bottom-left {
+          bottom: -3px;
+          left: -3px;
         }
         ${weatherSVGStyles}
       `,

@@ -37,7 +37,7 @@ Mushroom is available in [HACS][hacs] (Home Assistant Community Store).
 
 Use this link to directly go to the repository in HACS
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=piitaya&repository=lovelace-mushroom)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=cbrosius&repository=lovelace-mushroom)
 
 _or_
 
@@ -99,7 +99,7 @@ A [template badge](docs/badges/template.md) is available if you're using at leas
   
 ### Theme customization
 
-Mushroom works without theme but you can add a theme for better experience by installing the [Mushroom Themes](https://github.com/piitaya/lovelace-mushroom-themes). If you want more information about themes, check out the official [Home Assistant documentation about themes][home-assitant-theme-docs].
+Mushroom works without theme but you can add a theme for better experience by installing the [Mushroom Themes](https://github.com/cbrosius/lovelace-mushroom-themes). If you want more information about themes, check out the official [Home Assistant documentation about themes][home-assitant-theme-docs].
 
 ## Development server
 
@@ -147,8 +147,8 @@ If you want to help translating Mushroom, you can translate it directly from you
 ### Maintainer steps to add a new language
 
 1. To be compatible with Home Assistant, language tags have to follow [BCP 47](https://www.rfc-editor.org/info/bcp47). A list of most language tags can be found here: [IANA subtag registry](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry). Examples: `fr`, `fr-CA`, `zh-Hans`.
-2. Create a new file `{language_code}.json` with your language code in the [translation folder](https://github.com/piitaya/lovelace-mushroom/tree/main/src/translations). Examples: `fr.json`.
-3. Import your file into the [`localize.ts file`](https://github.com/piitaya/lovelace-mushroom/blob/main/src/localize.ts) and add your language in the `languages` record.
+2. Create a new file `{language_code}.json` with your language code in the [translation folder](https://github.com/cbrosius/lovelace-mushroom/tree/main/src/translations). Examples: `fr.json`.
+3. Import your file into the [`localize.ts file`](https://github.com/cbrosius/lovelace-mushroom/blob/main/src/localize.ts) and add your language in the `languages` record.
 4. Don't forget to test locally with the development server by choosing the language with the Home Assistant UI in your profile.
 
 ## Troubleshooting
@@ -165,7 +165,7 @@ If you want to help translating Mushroom, you can translate it directly from you
 
 ### My card mod configuration doesn't work.
 
-Help about card mod configuration is not provided in this repository. More info in the [state of card mod support](https://github.com/piitaya/lovelace-mushroom/issues/1366).
+Help about card mod configuration is not provided in this repository. More info in the [state of card mod support](https://github.com/cbrosius/lovelace-mushroom/issues/1366).
 
 ## Credits
 
@@ -175,9 +175,9 @@ The design is inspired by [7ahang’s work][7ahang] on Behance and [Ui Lovelace 
 
 [hacs-url]: https://github.com/hacs/integration
 [hacs-badge]: https://img.shields.io/badge/hacs-default-orange.svg?style=flat-square
-[release-badge]: https://img.shields.io/github/v/release/piitaya/lovelace-mushroom?style=flat-square
-[downloads-badge]: https://img.shields.io/github/downloads/piitaya/lovelace-mushroom/total?style=flat-square
-[build-badge]: https://img.shields.io/github/actions/workflow/status/piitaya/lovelace-mushroom/build.yml?branch=main&style=flat-square
+[release-badge]: https://img.shields.io/github/v/release/cbrosius/lovelace-mushroom?style=flat-square
+[downloads-badge]: https://img.shields.io/github/downloads/cbrosius/lovelace-mushroom/total?style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/cbrosius/lovelace-mushroom/build.yml?branch=main&style=flat-square
 [translations-badge]: https://hosted.weblate.org/widget/mushroom/svg-badge.svg
 
 <!-- References -->
@@ -188,5 +188,5 @@ The design is inspired by [7ahang’s work][7ahang] on Behance and [Ui Lovelace 
 [ui-lovelace-minimalist]: https://ui-lovelace-minimalist.github.io/UI/
 [button-card]: https://github.com/custom-cards/button-card
 [7ahang]: https://www.behance.net/gallery/88433905/Redesign-Smart-Home
-[release-url]: https://github.com/piitaya/lovelace-mushroom/releases
+[release-url]: https://github.com/cbrosius/lovelace-mushroom/releases
 [weblate-url]: https://hosted.weblate.org/engage/mushroom/

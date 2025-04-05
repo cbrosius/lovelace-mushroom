@@ -18,6 +18,12 @@ import {
 } from "../../shared/config/appearance-config";
 import { lovelaceCardConfigStruct } from "../../shared/config/lovelace-card-config";
 
+export type BadgeConfig = {
+  icon: string;
+  color?: string;
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+};
+
 export type TemplateCardConfig = LovelaceCardConfig &
   AppearanceSharedConfig &
   ActionsSharedConfig & {
@@ -26,12 +32,17 @@ export type TemplateCardConfig = LovelaceCardConfig &
     icon_color?: string;
     primary?: string;
     secondary?: string;
-    badge_icon?: string;
-    badge_color?: string;
+    badges?: BadgeConfig[];
     picture?: string;
     multiline_secondary?: boolean;
     entity_id?: string | string[];
   };
+
+export const badgeConfigStruct = object({
+  icon: string(),
+  color: optional(string()),
+  position: optional(string()),
+});
 
 export const templateCardConfigStruct = assign(
   lovelaceCardConfigStruct,
@@ -42,8 +53,7 @@ export const templateCardConfigStruct = assign(
     icon_color: optional(string()),
     primary: optional(string()),
     secondary: optional(string()),
-    badge_icon: optional(string()),
-    badge_color: optional(string()),
+    badges: optional(array(badgeConfigStruct)),
     picture: optional(string()),
     multiline_secondary: optional(boolean()),
     entity_id: optional(union([string(), array(string())])),
